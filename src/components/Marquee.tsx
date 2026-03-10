@@ -16,7 +16,7 @@ export default function Marquee() {
         {items.map((event, i) => (
           <span
             key={`${event.id}-${i}`}
-            className="flex items-center gap-3 px-8 whitespace-nowrap text-sm"
+            className="flex items-center gap-3 px-10 whitespace-nowrap text-base"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-light)' }}
           >
             <span

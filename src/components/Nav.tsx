@@ -34,18 +34,19 @@ export default function Nav() {
       aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'py-3 backdrop-blur-md'
+          ? 'py-3 backdrop-blur-md border-b'
           : 'py-5'
       }`}
       style={{
         backgroundColor: scrolled ? 'rgba(250, 247, 242, 0.9)' : 'transparent',
+        borderColor: scrolled ? 'var(--color-border)' : 'transparent',
       }}
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between">
         <a
           href="#"
-          className="font-display text-2xl tracking-tight"
-          style={{ color: 'var(--color-ink)' }}
+          className="font-display text-2xl tracking-tight transition-colors duration-200"
+          style={{ color: scrolled ? 'var(--color-ink)' : 'var(--color-cream)' }}
           aria-label="TYRŠ — Back to top"
         >
           TYRŠ
@@ -58,11 +59,27 @@ export default function Nav() {
               key={link.href}
               href={link.href}
               className="text-sm font-medium tracking-wide uppercase transition-colors duration-200 hover:opacity-60"
-              style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-body)' }}
+              style={{
+                color: scrolled ? 'var(--color-ink)' : 'var(--color-cream)',
+                fontFamily: 'var(--font-body)',
+              }}
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#programme"
+            className="text-sm font-medium tracking-wide uppercase px-4 py-2 rounded-full transition-all duration-200"
+            style={{
+              backgroundColor: 'var(--color-accent)',
+              color: 'var(--color-cream)',
+              fontFamily: 'var(--font-body)',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
+          >
+            Tickets
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -75,21 +92,21 @@ export default function Nav() {
           <span
             className="block w-6 h-[2px] transition-all duration-300 origin-center"
             style={{
-              backgroundColor: 'var(--color-ink)',
+              backgroundColor: scrolled ? 'var(--color-ink)' : 'var(--color-cream)',
               transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none',
             }}
           />
           <span
             className="block w-6 h-[2px] transition-all duration-300"
             style={{
-              backgroundColor: 'var(--color-ink)',
+              backgroundColor: scrolled ? 'var(--color-ink)' : 'var(--color-cream)',
               opacity: menuOpen ? 0 : 1,
             }}
           />
           <span
             className="block w-6 h-[2px] transition-all duration-300 origin-center"
             style={{
-              backgroundColor: 'var(--color-ink)',
+              backgroundColor: scrolled ? 'var(--color-ink)' : 'var(--color-cream)',
               transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none',
             }}
           />
@@ -115,6 +132,18 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
+          <a
+            href="#programme"
+            onClick={() => setMenuOpen(false)}
+            className="text-lg font-medium uppercase tracking-wide px-6 py-3 rounded-full mt-4"
+            style={{
+              backgroundColor: 'var(--color-accent)',
+              color: 'var(--color-cream)',
+              fontFamily: 'var(--font-body)',
+            }}
+          >
+            Tickets
+          </a>
         </div>
       </div>
     </nav>

@@ -19,15 +19,22 @@ export default function Spaces() {
           </h2>
         </RevealOnScroll>
 
-        <div className="space-y-0">
+        <div className="space-y-16 md:space-y-24">
           {spaces.map((space, i) => (
             <RevealOnScroll key={space.name} delay={i}>
-              <article
-                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-12 md:py-16 border-t"
-                style={{ borderColor: 'var(--color-border)' }}
-              >
-                {/* Name & meta */}
-                <div className="md:col-span-4">
+              <article className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+                {/* Image */}
+                <div className={`md:col-span-6 aspect-[3/2] overflow-hidden rounded-lg ${i % 2 !== 0 ? 'md:order-2' : ''}`}>
+                  <img
+                    src={space.image}
+                    alt={`${space.name} — ${space.subtitle}`}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Text */}
+                <div className={`md:col-span-5 ${i % 2 !== 0 ? 'md:order-1 md:col-start-1' : 'md:col-start-8'}`}>
                   <h3
                     className="font-display text-3xl md:text-4xl mb-1"
                     style={{ color: 'var(--color-ink)' }}
@@ -41,15 +48,11 @@ export default function Spaces() {
                     {space.subtitle}
                   </p>
                   <p
-                    className="text-sm"
+                    className="text-sm mb-6"
                     style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-body)' }}
                   >
                     {space.capacity}
                   </p>
-                </div>
-
-                {/* Description */}
-                <div className="md:col-span-7 md:col-start-6">
                   <p
                     className="text-base md:text-lg leading-relaxed"
                     style={{ color: 'var(--color-ink-light)', fontFamily: 'var(--font-body)' }}

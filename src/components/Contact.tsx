@@ -11,6 +11,18 @@ export default function Contact() {
       aria-labelledby="visit-heading"
     >
       <div className="max-w-[1400px] mx-auto">
+        {/* Location image */}
+        <RevealOnScroll>
+          <div className="aspect-[21/9] overflow-hidden rounded-lg mb-16 md:mb-24">
+            <img
+              src="https://images.unsplash.com/photo-1592906209472-a36b1f3782ef?w=1200&q=80"
+              alt="View of Kampa Island and the Vltava river, Prague"
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </RevealOnScroll>
+
         <RevealOnScroll>
           <h2
             id="visit-heading"

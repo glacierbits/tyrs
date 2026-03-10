@@ -15,6 +15,9 @@ export default function RevealOnScroll({ children, delay = 0, className = '' }: 
     const el = ref.current;
     if (!el) return;
 
+    // Progressive enhancement: hide element, then reveal on scroll
+    el.classList.add('reveal-hidden');
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -22,7 +25,7 @@ export default function RevealOnScroll({ children, delay = 0, className = '' }: 
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
     );
 
     observer.observe(el);
@@ -32,7 +35,7 @@ export default function RevealOnScroll({ children, delay = 0, className = '' }: 
   const delayClass = delay > 0 ? `reveal-delay-${delay}` : '';
 
   return (
-    <div ref={ref} className={`reveal ${delayClass} ${className}`}>
+    <div ref={ref} className={`${delayClass} ${className}`}>
       {children}
     </div>
   );

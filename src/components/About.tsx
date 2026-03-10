@@ -73,6 +73,18 @@ export default function About() {
             </RevealOnScroll>
           </div>
         </div>
+
+        {/* Atmospheric image */}
+        <RevealOnScroll delay={4}>
+          <div className="mt-16 md:mt-24 aspect-[21/9] overflow-hidden rounded-lg">
+            <img
+              src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=1200&q=80"
+              alt="Prague cityscape from Kampa Island"
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
