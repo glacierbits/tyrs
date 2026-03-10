@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import DevTools from '@/components/DevTools';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className="antialiased">
         <div className="noise-overlay" aria-hidden="true" />
         {children}
+        <DevTools />
       </body>
     </html>
   );
