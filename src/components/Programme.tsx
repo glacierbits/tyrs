@@ -60,69 +60,61 @@ export default function Programme() {
         </RevealOnScroll>
 
         {/* Events grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--color-border)' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {filtered.map((event, i) => (
             <RevealOnScroll key={event.id} delay={i % 2 === 0 ? 0 : 1}>
-              <article
-                className="p-6 md:p-10 group cursor-pointer transition-colors duration-300"
-                style={{ backgroundColor: 'var(--color-cream)' }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = 'var(--color-surface)')
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = 'var(--color-cream)')
-                }
-              >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <span
-                    className="text-xs uppercase tracking-[0.15em] px-2.5 py-1 rounded-full border"
-                    style={{
-                      borderColor: 'var(--color-border)',
-                      color: 'var(--color-ink-muted)',
-                      fontFamily: 'var(--font-body)',
-                    }}
-                  >
-                    {disciplineLabels[event.discipline]}
-                  </span>
-                  <time
-                    dateTime={event.date}
-                    className="text-sm tabular-nums"
-                    style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-body)' }}
-                  >
-                    {new Date(event.date + 'T00:00:00').toLocaleDateString('en-GB', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
-                    })}
-                    {' · '}
-                    {event.time}
-                  </time>
+              <article className="group cursor-pointer card-hover rounded-lg overflow-hidden border" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-cream)' }}>
+                {/* Event image */}
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover img-zoom"
+                  />
                 </div>
 
-                <h3
-                  className="font-display text-2xl md:text-3xl mb-3 transition-colors duration-200"
-                  style={{ color: 'var(--color-ink)' }}
-                >
-                  {event.title}
-                </h3>
+                {/* Event details */}
+                <div className="p-6 md:p-8">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <span
+                      className="text-xs uppercase tracking-[0.15em] px-2.5 py-1 rounded-full border"
+                      style={{
+                        borderColor: 'var(--color-border)',
+                        color: 'var(--color-ink-muted)',
+                        fontFamily: 'var(--font-body)',
+                      }}
+                    >
+                      {disciplineLabels[event.discipline]}
+                    </span>
+                    <time
+                      dateTime={event.date}
+                      className="text-sm tabular-nums"
+                      style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-body)' }}
+                    >
+                      {new Date(event.date + 'T00:00:00').toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                      {' · '}
+                      {event.time}
+                    </time>
+                  </div>
 
-                <p
-                  className="text-sm leading-relaxed max-w-lg"
-                  style={{ color: 'var(--color-ink-light)', fontFamily: 'var(--font-body)' }}
-                >
-                  {event.description}
-                </p>
+                  <h3
+                    className="font-display text-2xl md:text-3xl mb-3 transition-colors duration-200 group-hover:text-[var(--color-accent)]"
+                    style={{ color: 'var(--color-ink)' }}
+                  >
+                    {event.title}
+                  </h3>
 
-                {/* Arrow indicator */}
-                <div
-                  className="mt-6 flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-0 group-hover:translate-x-2"
-                  style={{ color: 'var(--color-accent)' }}
-                  aria-hidden="true"
-                >
-                  <span>Details</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M3 8h10M9 4l4 4-4 4" />
-                  </svg>
+                  <p
+                    className="text-sm leading-relaxed max-w-lg"
+                    style={{ color: 'var(--color-ink-light)', fontFamily: 'var(--font-body)' }}
+                  >
+                    {event.description}
+                  </p>
                 </div>
               </article>
             </RevealOnScroll>

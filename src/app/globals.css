@@ -94,15 +94,15 @@ body {
   background-size: 256px 256px;
 }
 
-/* Scroll reveal animation */
-.reveal {
+/* Scroll reveal animation (progressive enhancement — visible by default) */
+.reveal-hidden {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(20px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal.visible {
+.reveal-hidden.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -111,6 +111,22 @@ body {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Image hover zoom */
+.img-zoom {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .img-zoom {
+  transform: scale(1.04);
+}
+
+/* Card hover */
+.card-hover {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 4px 24px rgba(26, 26, 24, 0.06);
+}
 
 /* Marquee */
 @keyframes marquee {
